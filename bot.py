@@ -11,13 +11,16 @@ import urllib
 from timeZone import UTC_offset
 from convertTime import convertTime
 
-cluster = MongoClient("mongodb+srv://shivanshu:" + urllib.parse.quote("Khusi@123") + "@cluster0.qzsh9.mongodb.net/test")
+
+load_dotenv()
+MONGO = os.getenv('MONGO_URI')
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+cluster = MongoClient("mongodb+srv://shivanshu:" + urllib.parse.quote(MONGO) + "@cluster0.qzsh9.mongodb.net/test")
 db = cluster["time-turner"]
 collection = db["time-turner"]
 
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
 
 intents = discord.Intents.all()
 client = discord.Client(intents=intents)
